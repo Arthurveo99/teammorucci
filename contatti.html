@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contatti — Chef Andrej Morucci</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:#f7f4ef;
+  color:#1c1c1c;
+  line-height:1.8;
+}
+
+/* NAVBAR */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 8%;
+  background:rgba(0,0,0,.25);
+  backdrop-filter:blur(12px);
+  font-style: italic;
+}
+
+.navbar-brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  color:white;
+  font-size:1.8rem;
+  font-weight:600;
+  letter-spacing:1px;
+  text-decoration:none;
+  line-height:1;
+  font-style: italic;
+}
+
+.navbar-logo{
+  height: 60px;
+  opacity: 0.9;
+}
+
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:35px;
+}
+
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.nav-links a:hover{
+  color:black;
+}
+
+.nav-links a.active{
+  color:#d8b47f;
+  border-bottom: 1px solid #d8b47f;
+  padding-bottom: 2px;
+}
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
+.hamburger span{
+  width:28px;
+  height:2px;
+  background:white;
+  transition:.3s;
+}
+
+/* HERO CONTATTI */
+
+.hero-contatti{
+  min-height:55vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url('contatti.jpeg') center/cover no-repeat;
+  color:white;
+  text-align:center;
+}
+
+.hero-contatti-content{
+  padding-top:80px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.hero-contatti h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:5rem;
+  font-weight:600;
+  letter-spacing:2px;
+  margin:0 0 16px;
+}
+
+.hero-contatti p{
+  font-size:1.1rem;
+  font-weight:300;
+  color:rgba(255,255,255,0.75);
+  letter-spacing:1px;
+}
+
+.hero-divider{
+  width:60px;
+  height:1px;
+  background:#b48b57;
+  margin:20px auto 0;
+}
+
+/* SEZIONE CONTATTI */
+
+.section-contatti{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+  padding:100px 8%;
+}
+
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;
+  margin-bottom:40px;
+  position:relative;
+  color:#111;
+}
+
+.section-title::after{
+  content:'';
+  width:80px;
+  height:2px;
+  background:#b48b57;
+  position:absolute;
+  left:0;
+  bottom:-10px;
+}
+
+.contatti-intro{
+  font-size:1.05rem;
+  color:#444;
+  max-width:600px;
+  margin-bottom:60px;
+}
+
+/* CARDS */
+
+.contatti-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:28px;
+}
+
+.contatti-card{
+  background:white;
+  border-radius:18px;
+  padding:2rem 1.5rem;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:14px;
+  text-decoration:none;
+  color:#1c1c1c;
+  box-shadow:0 8px 30px rgba(0,0,0,0.07);
+  border:1px solid transparent;
+  transition:all .3s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.contatti-card::before{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:0%;
+  height:2px;
+  background:#b48b57;
+  transition:width .3s ease;
+}
+
+.contatti-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 40px rgba(0,0,0,0.12);
+  border-color:#e8d9c5;
+}
+
+.contatti-card:hover::before{
+  width:100%;
+}
+
+.contatti-icon-wrap{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:#f7f4ef;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.contatti-icon-wrap svg{
+  width:22px;
+  height:22px;
+  stroke:#b48b57;
+  fill:none;
+  stroke-width:1.6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.contatti-label{
+  font-size:0.75rem;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:#999;
+  font-weight:500;
+}
+
+.contatti-value{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;
+  font-weight:600;
+  color:#111;
+  line-height:1.3;
+}
+
+.contatti-arrow{
+  margin-top:auto;
+  font-size:0.8rem;
+  letter-spacing:1px;
+  color:#b48b57;
+  text-transform:uppercase;
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  transition:gap .2s;
+}
+
+.contatti-card:hover .contatti-arrow{
+  gap:10px;
+}
+
+/* HIGHLIGHT FINALE */
+
+.highlight{
+  background:#111;
+  color:white;
+  padding:100px 8%;
+  text-align:center;
+}
+
+.highlight h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;
+  margin-bottom:30px;
+}
+
+.highlight p{
+  max-width:700px;
+  margin:auto;
+  font-size:1.1rem;
+  line-height:2;
+  color:#ddd;
+  font-weight:300;
+}
+
+footer{
+  padding:40px;
+  text-align:center;
+  background:#0f0f0f;
+  color:#999;
+  font-size:0.95rem;
+}
+
+@media(max-width:1012px){
+
+  .hero-contatti h1{
+    font-size:3.2rem;
+  }
+
+  .section-contatti{
+    padding:70px 7%;
+  }
+
+  .hamburger{
+    display:flex;
+  }
+
+  .nav-links{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:280px;
+    height:100vh;
+    background:#111;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+    transition:.4s ease;
+  }
+
+  .nav-links.active{
+    right:0;
+  }
+}
+
+@media(max-width:600px){
+
+  .hero-contatti h1{
+    font-size:2.6rem;
+  }
+
+  .section-title{
+    font-size:2.3rem;
+  }
+
+  .highlight h2{
+    font-size:2.2rem;
+  }
+
+  .logo{
+    font-size:1.4rem;
+  }
+
+  .navbar-logo{
+    height:30px;
+  }
+
+  .contatti-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="navbar-brand">
+    <img src="logo_morucci_white.png" alt="Logo Morucci" class="navbar-logo">
+    <a href="index.html" class="logo">Andrej Morucci</a>
+  </div>
+
+  <button class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Io Andrej</a></li>
+    <li><a href="cucina.html">La mia cucina</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="team_morucci.html">Team Morucci</a></li>
+    <li><a href="contatti.html" class="active">Contatti</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero-contatti">
+  <div class="hero-contatti-content">
+    <h1>Contatti</h1>
+    <p>Scrivici, seguici, raccontaci la tua idea.</p>
+    <div class="hero-divider"></div>
+  </div>
+</section>
+
+<!-- CARDS CONTATTI -->
+<section class="section-contatti">
+
+  <h2 class="section-title">Parliamo</h2>
+
+  <p class="contatti-intro">
+    ACCENDI LA TUA PASSIONE: SCOPRI LE OPPORTUNITÀ DEL MONDO MORUCCI ENTRA NEL TEAM
+  </p>
+
+  <div class="contatti-grid">
+
+    <!-- Instagram -->
+    <a class="contatti-card" href="https://instagram.com/morucci_team" target="_blank" rel="noopener">
+      <div class="contatti-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="#b48b57" stroke="none"/></svg>
+      </div>
+      <span class="contatti-label">Instagram</span>
+      <span class="contatti-value">@morucci_team</span>
+      <span class="contatti-arrow">Seguici &rarr;</span>
+    </a>
+
+    <!-- Facebook -->
+    <a class="contatti-card" href="https://www.facebook.com/share/g/1FvrrfdQx1/" target="_blank" rel="noopener">
+      <div class="contatti-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </div>
+      <span class="contatti-label">Facebook</span>
+      <span class="contatti-value">MORUCCI TEAM</span>
+      <span class="contatti-arrow">Seguici &rarr;</span>
+    </a>
+
+    <!-- Mail -->
+    <a class="contatti-card" href="mailto:morucciteam@gmail.com">
+      <div class="contatti-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <span class="contatti-label">Mail</span>
+      <span class="contatti-value">morucciteam@gmail.com</span>
+      <span class="contatti-arrow">Scrivici &rarr;</span>
+    </a>
+
+    <!-- Telefono -->
+    <a class="contatti-card" href="tel:+393312962396">
+      <div class="contatti-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l1.12-.95a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7a2 2 0 0 1 1.76 2.05z"/></svg>
+      </div>
+      <span class="contatti-label">Telefono</span>
+      <span class="contatti-value">+39 331 296 2396</span>
+      <span class="contatti-arrow">Chiamaci &rarr;</span>
+    </a>
+
+  </div>
+
+</section>
+
+<!-- HIGHLIGHT -->
+<section class="highlight">
+  <h2>Un'idea prende forma a tavola.</h2>
+  <p>
+    Che si tratti di un evento esclusivo, una cena privata o una consulenza gastronomica,
+    il Team Morucci è pronto ad ascoltarti e costruire insieme qualcosa di straordinario.
+  </p>
+</section>
+
+<footer>
+  © 2026 Chef Andrej Morucci — Fine Dining & Culinary Vision
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+  });
+});
+</script>
+
+</body>
+</html>

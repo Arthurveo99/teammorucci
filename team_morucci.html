@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chef Andrej Morucci</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:#f7f4ef;
+  color:#1c1c1c;
+  line-height:1.8;
+}
+
+/* NAVBAR */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 20px;
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(12px);
+}
+
+.navbar-brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.navbar-logo {
+  height: 65px;
+  width: auto;
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-style: italic;
+}
+
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:35px;
+}
+
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.nav-links a:hover{
+  color:#b48b57;
+}
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
+.hamburger span{
+  width:28px;
+  height:2px;
+  background:white;
+  transition:.3s;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 60px 15% 60px 10%;
+  background:
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+    url('team.jpeg') center/cover no-repeat;
+  color: white;
+  text-align: right;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 50px;
+  padding-right: 2%;
+  width: fit-content;
+}
+
+.hero h1{
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: 1.6rem;
+  letter-spacing: 1.5px;
+  color: black;
+  margin: 15px;
+}
+
+.hero p{
+  font-size:1.2rem;
+  font-weight:300;
+  max-width:700px;
+  margin:auto;
+}
+
+/* SECTIONS */
+
+.section{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding:100px 8%;
+}
+
+.section-title{
+  font-family:'Cormorant Garamond', serif;
+  font-size:3rem;
+  margin-bottom:40px;
+  position:relative;
+  color:#111;
+}
+
+.section-title::after{
+  content:'';
+  width:80px;
+  height:2px;
+  background:#b48b57;
+  position:absolute;
+  left:0;
+  bottom:-10px;
+}
+
+.bio{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+
+.bio img{
+  width:100%;
+  border-radius:18px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+  object-fit:cover;
+}
+
+.bio-text p{
+  margin-bottom:25px;
+  font-size:1.05rem;
+  color:#333;
+}
+
+.bio-text h3{
+  font-family:'Cormorant Garamond', serif;
+  font-size:2.2rem;
+  font-weight:600;
+  color:#111;
+  margin-bottom:25px;
+  position:relative;
+}
+
+.bio-text h3::after{
+  content:'';
+  display:block;
+  width:60px;
+  height:2px;
+  background:#b48b57;
+  margin-top:10px;
+}
+
+/* ── HIGHLIGHT ─────────────────────────────────────────── */
+
+.highlight {
+  background: #111;
+  color: white;
+  padding: 120px 8%;
+  text-align: center;
+  position: relative;
+}
+
+.highlight::before,
+.highlight::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: #b48b57;
+  margin: 0 auto;
+}
+.highlight::before { margin-bottom: 60px; }
+.highlight::after  { margin-top: 60px; }
+
+.highlight h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+  color: #f7f4ef;
+  margin-bottom: 0;
+}
+
+.highlight-firma {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #b48b57;
+  margin-top: 18px;
+  margin-bottom: 56px;
+}
+
+.highlight-intro {
+  max-width: 680px;
+  margin: 0 auto 80px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 2.1;
+  color: #bbb;
+  letter-spacing: 0.2px;
+}
+
+/* Griglia tre colonne per le voci Aj./Morucci./Team. */
+.highlight-triade {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px 60px;
+  max-width: 860px;
+  margin: 0 auto 60px;
+  text-align: left;
+}
+
+.highlight-triade-item {
+  border-top: 1px solid #2e2e2e;
+  padding-top: 24px;
+}
+
+/* Etichetta maiuscoletto dorata */
+.highlight-label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #b48b57;
+  margin-bottom: 10px;
+}
+
+/* Titolino concetto — es. "L'innovazione dello Chef" */
+.highlight-triade-item strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-style: italic;
+  color: #e8e3db;
+  margin-bottom: 8px;
+}
+
+/* Descrizione discreta */
+.highlight-triade-item p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: #777;
+  letter-spacing: 0.1px;
+  max-width: none;
+  margin: 0;
+}
+
+/* Chiusura — "Tre nomi. Un'unica cucina." */
+.highlight-chiusura {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #555;
+  letter-spacing: 0.5px;
+  margin-top: 20px;
+}
+
+/* ── END HIGHLIGHT ──────────────────────────────────────── */
+
+footer{
+  padding:40px;
+  text-align:center;
+  background:#0f0f0f;
+  color:#999;
+  font-size:0.95rem;
+}
+
+@media(max-width:1012px){
+
+  .hero {
+    align-items: flex-end;
+    padding-bottom: 80px;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+    text-align: left;
+  }
+
+  .hero-content {
+    align-items: flex-start;
+    padding-top: 0;
+    padding-right: 0;
+    width: 100%;
+  }
+
+  .bio{
+    grid-template-columns:1fr;
+  }
+
+  .section{
+    padding:70px 7%;
+  }
+
+  .hamburger{
+    display:flex;
+  }
+
+  .nav-links{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:280px;
+    height:100vh;
+    background:#111;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+    transition:.4s ease;
+  }
+
+  .nav-links.active{
+    right:0;
+  }
+
+  .highlight {
+    padding: 90px 6%;
+  }
+
+  .highlight-triade {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .highlight-triade-item {
+    border-top: none;
+    border-left: 2px solid #2e2e2e;
+    padding-top: 0;
+    padding-left: 20px;
+    text-align: left;
+  }
+}
+
+@media(max-width:600px){
+
+  .hero h1{
+    font-size: 1.4rem;
+  }
+
+  .section-title{
+    font-size:2.3rem;
+  }
+
+  .highlight h2{
+    font-size:2.2rem;
+  }
+
+  .logo{
+    font-size:1.4rem;
+  }
+}
+
+</style>
+</head>
+
+<body>
+<nav class="navbar">
+  <div class="navbar-brand">
+    <img src="logo_morucci_white.png" alt="Logo Morucci" class="navbar-logo">
+    <a href="index.html" class="logo">Andrej Morucci</a>
+  </div>
+
+  <button class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html"><i>Io Andrej</i></a></li>
+    <li><a href="cucina.html"><i>La mia cucina</i></a></li>
+    <li><a href="gallery.html"><i>Gallery</i></a></li>
+    <li><a href="team_morucci.html"><i>Team Morucci</i></a></li>
+    <li><a href="contatti.html"><i>Contatti</i></a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content"></div>
+</section>
+
+<section class="highlight" id="materia">
+
+  <h2>Ogni creazione porta<br>una firma.</h2>
+  <span class="highlight-firma">Morucci</span>
+
+  <p class="highlight-intro">
+    Oggi Chef Andrej Morucci ha deciso di riportare tutta questa conoscenza
+    internazionale a casa, nel cuore di Città della Pieve.
+    La sua cucina è il manifesto dei suoi valori più autentici:
+    rispetto per l'ingrediente, disciplina della brigata e
+    senso di accoglienza della famiglia.
+    Un ritorno alle radici, dove tutto è iniziato,
+    per offrire un'esperienza gastronomica inedita,
+    cosmopolita e profondamente legata al territorio.
+  </p>
+
+  <div class="highlight-triade">
+
+    <div class="highlight-triade-item">
+      <span class="highlight-label">Aj.</span>
+      <strong>La firma.</strong>
+      <p>L'innovazione dello Chef. Il gesto preciso, la ricerca continua, l'evoluzione come pratica quotidiana.</p>
+    </div>
+
+    <div class="highlight-triade-item">
+      <span class="highlight-label">Morucci.</span>
+      <strong>L'eredità.</strong>
+      <p>La tradizione di una famiglia. Le radici che danno profondità a ogni piatto, a ogni scelta.</p>
+    </div>
+
+    <div class="highlight-triade-item">
+      <span class="highlight-label">Team.</span>
+      <strong>L'esperienza.</strong>
+      <p>La disciplina silenziosa di chi lavora ogni giorno perché ogni dettaglio sia memorabile.</p>
+    </div>
+
+  </div>
+
+  <p class="highlight-chiusura">Tre nomi. Un'unica cucina.</p>
+
+</section>
+
+<footer>
+  © 2026 Chef Andrej Morucci — Fine Dining & Culinary Vision
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+
+</body>
+</html>
