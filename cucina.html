@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>La mia cucina — Chef Andrej Morucci</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{ scroll-behavior:smooth; }
+
+body{
+  font-family:'Inter',sans-serif;
+  background:#f7f4ef;
+  color:#1c1c1c;
+  line-height:1.8;
+}
+
+/* ── NAVBAR ─────────────────────────────────────────────── */
+
+.navbar{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 20px;
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(12px);
+}
+
+.navbar-brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.navbar-logo{
+  height:65px;
+  width:auto;
+}
+
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  color:white;
+  font-size:1.8rem;
+  font-weight:600;
+  letter-spacing:1px;
+  text-decoration:none;
+  white-space:nowrap;
+  font-style:italic;
+}
+
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:35px;
+}
+
+.nav-links a{
+  font-family:'Inter',sans-serif;
+  font-size:0.75rem;
+  font-weight:300;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:white;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.nav-links a:hover{ color:#b48b57; }
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  background:none;
+  border:none;
+  cursor:pointer;
+}
+
+.hamburger span{
+  width:28px;
+  height:2px;
+  background:white;
+  transition:.3s;
+}
+
+/* ── HERO FOTO ──────────────────────────────────────────── */
+
+.hero-cucina{
+  width:100%;
+  height:75vh;
+  position:relative;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
+    url('cucina.jpeg') center/cover no-repeat;
+  display:flex;
+  align-items:flex-end;
+  padding:0 8% 70px;
+}
+
+.hero-eyebrow{
+  display:block;
+  font-family:'Inter',sans-serif;
+  font-size:0.65rem;
+  font-weight:500;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:#b48b57;
+  margin-bottom:14px;
+}
+
+.hero-cucina-text h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem, 6vw, 5rem);
+  font-weight:500;
+  font-style:italic;
+  line-height:1.1;
+  color:#f7f4ef;
+}
+
+/* ── APERTURA ───────────────────────────────────────────── */
+
+.cucina-apertura-wrap{
+  text-align:center;
+  padding:90px 8% 70px;
+}
+
+.cucina-apertura{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.5rem, 2.5vw, 2rem);
+  font-style:italic;
+  font-weight:400;
+  color:#1c1c1c;
+  line-height:1.6;
+}
+
+/* ── BLOCCHI TEMPO ──────────────────────────────────────── */
+
+.cucina-blocchi{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 6% 100px;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+
+.cucina-tempo{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  align-items:stretch;
+  min-height:420px;
+}
+
+/* alternanza: testo a sinistra / foto a destra, poi inverti */
+.cucina-tempo:nth-child(even){
+  direction:rtl;
+}
+.cucina-tempo:nth-child(even) > *{
+  direction:ltr;
+}
+
+.cucina-tempo-img{
+  width:100%;
+  height:100%;
+  min-height:380px;
+  object-fit:cover;
+  display:block;
+}
+
+.cucina-tempo-content{
+  padding:60px 56px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:#f7f4ef;
+  position:relative;
+}
+
+/* numero romano discreto in alto */
+.cucina-numero{
+  font-family:'Cormorant Garamond',serif;
+  font-size:0.8rem;
+  font-weight:400;
+  letter-spacing:4px;
+  color:#c9bfb0;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+.cucina-tempo-label{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.7rem;
+  font-style:italic;
+  font-weight:500;
+  color:#b48b57;
+  line-height:1.3;
+  margin-bottom:24px;
+}
+
+/* linea sottile dorata sotto il titolo */
+.cucina-tempo-label::after{
+  content:'';
+  display:block;
+  width:40px;
+  height:1px;
+  background:#b48b57;
+  margin-top:16px;
+}
+
+.cucina-tempo-content p{
+  font-family:'Inter',sans-serif;
+  font-size:0.95rem;
+  font-weight:300;
+  color:#555;
+  line-height:2;
+}
+
+/* sfondo alternato per il blocco centrale (secondo tempo) */
+.cucina-tempo:nth-child(2) .cucina-tempo-content{
+  background:#111;
+}
+.cucina-tempo:nth-child(2) .cucina-numero{ color:#3a3a3a; }
+.cucina-tempo:nth-child(2) .cucina-tempo-label{ color:#b48b57; }
+.cucina-tempo:nth-child(2) .cucina-tempo-content p{ color:#888; }
+
+/* ── CHIUSURA TRE PILASTRI ──────────────────────────────── */
+
+.cucina-pilastri{
+  background:#111;
+  padding:90px 8%;
+  text-align:center;
+  position:relative;
+}
+
+.cucina-pilastri::before,
+.cucina-pilastri::after{
+  content:'';
+  display:block;
+  width:50px;
+  height:1px;
+  background:#b48b57;
+  margin:0 auto;
+}
+.cucina-pilastri::before{ margin-bottom:50px; }
+.cucina-pilastri::after { margin-top:50px; }
+
+.cucina-pilastri-titolo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.6rem, 3vw, 2.4rem);
+  font-style:italic;
+  font-weight:400;
+  color:#f7f4ef;
+  margin-bottom:20px;
+  line-height:1.3;
+}
+
+.cucina-pilastri-sub{
+  font-family:'Inter',sans-serif;
+  font-size:0.75rem;
+  font-weight:300;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#777;
+  margin-bottom:48px;
+}
+
+.pilastri-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:48px;
+}
+
+.pilastro{
+  padding:0 40px;
+  border-right:1px solid #2e2e2e;
+}
+
+.pilastro:last-child{ border-right:none; }
+
+.pilastro-label{
+  display:block;
+  font-family:'Inter',sans-serif;
+  font-size:0.6rem;
+  font-weight:500;
+  letter-spacing:3.5px;
+  text-transform:uppercase;
+  color:#b48b57;
+  margin-bottom:6px;
+}
+
+.pilastro-word{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;
+  font-style:italic;
+  font-weight:400;
+  color:#e8e3db;
+}
+
+.cucina-chiusura{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;
+  font-style:italic;
+  color:#555;
+  letter-spacing:0.3px;
+}
+
+/* ── FOOTER ─────────────────────────────────────────────── */
+
+footer{
+  padding:40px;
+  text-align:center;
+  background:#0f0f0f;
+  color:#999;
+  font-size:0.95rem;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+
+@media(max-width:1012px){
+
+  .hamburger{ display:flex; }
+
+  .nav-links{
+    position:fixed;
+    top:0; right:-100%;
+    width:280px;
+    height:100vh;
+    background:#111;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+    transition:.4s ease;
+  }
+
+  .nav-links.active{ right:0; }
+
+  .hero-cucina{ height:60vh; }
+
+  .cucina-tempo{
+    grid-template-columns:1fr;
+    direction:ltr !important;
+  }
+
+  .cucina-tempo:nth-child(even) > *{
+    direction:ltr;
+  }
+
+  /* su mobile: foto sempre sopra, testo sotto */
+  .cucina-tempo-img{ order:-1; min-height:260px; }
+
+  .cucina-tempo-content{ padding:44px 7%; }
+
+  .pilastro{
+    padding:16px 24px;
+    border-right:none;
+    border-bottom:1px solid #2e2e2e;
+    width:100%;
+  }
+  .pilastro:last-child{ border-bottom:none; }
+}
+
+@media(max-width:600px){
+
+  .logo{ font-size:1.4rem; }
+  .hero-cucina{ height:55vh; }
+  .hero-cucina-text h1{ font-size:2.4rem; }
+  .cucina-apertura-wrap{ padding:60px 7% 40px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-brand">
+    <img src="logo_morucci_white.png" alt="Logo Morucci" class="navbar-logo">
+    <a href="index.html" class="logo">Andrej Morucci</a>
+  </div>
+
+  <button class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html"><i>Io Andrej</i></a></li>
+    <li><a href="cucina.html"><i>La mia cucina</i></a></li>
+    <li><a href="gallery.html"><i>Gallery</i></a></li>
+    <li><a href="team_morucci.html"><i>Team Morucci</i></a></li>
+    <li><a href="contatti.html"><i>Contatti</i></a></li>
+  </ul>
+</nav>
+
+<!-- HERO FOTO -->
+<div class="hero-cucina">
+  <div class="hero-cucina-text">
+    <span class="hero-eyebrow">La filosofia in cucina</span>
+    <h1>La mia cucina<br>nasce da una sequenza.</h1>
+  </div>
+</div>
+
+<!-- APERTURA -->
+<div class="cucina-apertura-wrap">
+  <p class="cucina-apertura">
+    Non si inizia dal piatto.<br>Si inizia dalla scelta.
+  </p>
+</div>
+
+<!-- TRE BLOCCHI -->
+<div class="cucina-blocchi">
+
+  <!-- PRIMO TEMPO -->
+  <div class="cucina-tempo">
+    <div class="cucina-tempo-content">
+      <span class="cucina-numero">I</span>
+      <span class="cucina-tempo-label">Il primo tempo<br>è la materia prima.</span>
+      <p>
+        Ogni prodotto viene selezionato con disciplina.
+        Solo ciò che ha identità, stagionalità e profondità entra in cucina.
+        Tutto il resto rimane fuori.
+      </p>
+    </div>
+    <img src="cucina1.jpeg" alt="Materia prima" class="cucina-tempo-img">
+  </div>
+
+  <!-- SECONDO TEMPO -->
+  <div class="cucina-tempo">
+    <div class="cucina-tempo-content">
+      <span class="cucina-numero">II</span>
+      <span class="cucina-tempo-label">Il secondo tempo<br>è la tradizione.</span>
+      <p>
+        Viene studiata con rispetto, non citata.
+        È la memoria di una famiglia, di un territorio, di una tecnica.
+        La tradizione di casa Morucci non è un vincolo.
+        È la base da cui si costruisce.
+      </p>
+    </div>
+    <img src="cucina2.jpeg" alt="Tradizione" class="cucina-tempo-img">
+  </div>
+
+  <!-- TERZO TEMPO -->
+  <div class="cucina-tempo">
+    <div class="cucina-tempo-content">
+      <span class="cucina-numero">III</span>
+      <span class="cucina-tempo-label">Il terzo tempo<br>è l'innovazione.</span>
+      <p>
+        È la firma. Il gesto di Andrej, lo Chef.
+        È la ricerca, la misura, l'evoluzione.
+        L'innovazione non rompe ciò che è stato.
+        Lo porta avanti, con precisione.
+      </p>
+    </div>
+    <img src="gallery9.jpeg" alt="Innovazione" class="cucina-tempo-img">
+  </div>
+
+</div>
+
+<!-- CHIUSURA -->
+<div class="cucina-pilastri">
+
+  <p class="cucina-pilastri-titolo">Tre pilastri.<br>Un solo linguaggio.</p>
+  <p class="cucina-pilastri-sub">La cucina di Morucci</p>
+
+  <div class="pilastri-row">
+    <div class="pilastro">
+      <span class="pilastro-label">I</span>
+      <span class="pilastro-word">Materia prima.</span>
+    </div>
+    <div class="pilastro">
+      <span class="pilastro-label">II</span>
+      <span class="pilastro-word">Tradizione.</span>
+    </div>
+    <div class="pilastro">
+      <span class="pilastro-label">III</span>
+      <span class="pilastro-word">Innovazione.</span>
+    </div>
+  </div>
+
+  <p class="cucina-chiusura">Da questo equilibrio nasce l'esperienza.</p>
+
+</div>
+
+<footer>
+  © 2026 Chef Andrej Morucci — Fine Dining & Culinary Vision
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+
+</body>
+</html>
